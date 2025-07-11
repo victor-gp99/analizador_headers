@@ -1,2 +1,2 @@
 # security_headers_analizer
-Script de python3 para el analisis de encabezados de seguridad de servicios http/https 
+Este script en python3 está diseñado para auditar y analizar los encabezados de seguridad presentes en las respuestas HTTP/HTTPS de servicios web. Su objetivo es identificar configuraciones inseguras o ausentes que puedan representar riesgos potenciales, como la falta de encabezados como Content-Security-Policy, Strict-Transport-Security, X-Content-Type-Options, entre otros. Es una herramienta útil para profesionales de ciberseguridad, desarrolladores web y administradores de sistemas que buscan fortalecer la seguridad de sus aplicaciones web
