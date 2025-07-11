@@ -4,6 +4,10 @@ import warnings
 import json
 import argparse
 from urllib.parse import urlparse
+from colorama import Fore, Style, init
+
+# Inicializa colorama para que funcione correctamente en diferentes terminales (especialmente Windows).
+init(autoreset=True)
 
 # Suprimir advertencias por certificados SSL no verificados (útil para pruebas, pero ten precaución en producción)
 warnings.filterwarnings("ignore", category=requests.packages.urllib3.exceptions.InsecureRequestWarning)
@@ -85,12 +89,13 @@ def main():
     Función principal del script.
 
     Analiza los argumentos de línea de comandos, valida la URL, realiza el análisis
-    de las cabeceras de seguridad, imprime un resumen en la consola y guarda
-    los resultados completos en un archivo JSON.
+    de las cabeceras de seguridad, imprime un resumen en la consola (con colores) y
+    guarda los resultados completos en un archivo JSON si se especifica la opción de salida.
     """
     parser = argparse.ArgumentParser(description="Análisis de cabeceras de seguridad HTTP/HTTPS")
     parser.add_argument("url", help="URL del sitio a analizar (ej. https://ejemplo.com)")
-    parser.add_argument("-o", "--output", help="Archivo de salida en formato JSON", default="resultado_headers.json")
+    # Cambiamos 'default' a None para saber si el usuario lo especificó o no.
+    parser.add_argument("-o", "--output", help="Archivo de salida en formato JSON", default=None)
     args = parser.parse_args()
 
     if not args.url.startswith(("http://", "https://")):
@@ -104,9 +109,18 @@ def main():
     result = analyze_security_headers(args.url)
     if result:
         for header, data in result["security_analysis"].items():
-            status = "[+]" if data["present"] else "[-]"
-            print(f"{status} {header}: {data['value'] or 'FALTANTE'}")
-        save_results(result, args.output)
+            status_symbol = "[+]" if data["present"] else "[-]"
+            header_value = data['value'] or 'FALTANTE'
+
+            # Aplicar color según la presencia de la cabecera
+            if data["present"]:
+                print(f"{Fore.GREEN}{status_symbol} {header}: {header_value}{Style.RESET_ALL}")
+            else:
+                print(f"{Fore.RED}{status_symbol} {header}: {header_value}{Style.RESET_ALL}")
+        
+        # Solo guardar resultados si el argumento --output fue proporcionado.
+        if args.output:
+            save_results(result, args.output)
 
 if __name__ == "__main__":
     main()
