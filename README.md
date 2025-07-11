@@ -12,9 +12,6 @@ Este script en Python 3 permite analizar de forma automatizada los encabezados d
 ## 🛠️ Requisitos
 
 - Python 3.6 o superior
-- Módulo `requests` (instalable con `pip install requests`)
-
-
 
 ## 📦 Instalación
 
