@@ -1,2 +1,23 @@
-# security_headers_analizer
-Este script en python3 está diseñado para auditar y analizar los encabezados de seguridad presentes en las respuestas HTTP/HTTPS de servicios web. Su objetivo es identificar configuraciones inseguras o ausentes que puedan representar riesgos potenciales, como la falta de encabezados como Content-Security-Policy, Strict-Transport-Security, X-Content-Type-Options, entre otros. Es una herramienta útil para profesionales de ciberseguridad, desarrolladores web y administradores de sistemas que buscan fortalecer la seguridad de sus aplicaciones web
+# 🔐 Análisis de Cabeceras de Seguridad HTTP/HTTPS
+
+Este script en Python 3 permite analizar de forma automatizada los encabezados de seguridad presentes en servicios web accesibles mediante HTTP o HTTPS.
+
+## 🚀 Características
+
+- Verifica la presencia de cabeceras como `Content-Security-Policy`, `Strict-Transport-Security`, `X-Frame-Options`, entre otras.
+- Muestra un resumen claro de cabeceras presentes y faltantes.
+- Guarda los resultados en un archivo JSON estructurado.
+- Permite ejecución desde línea de comandos con parámetros.
+
+## 🛠️ Requisitos
+
+- Python 3.6 o superior
+- Módulo `requests` (instalable con `pip install requests`)
+
+## 📦 Instalación
+
+```bash
+git clone https://github.com/tuusuario/analizador-headers.git
+cd analizador-headers
+pip install -r requirements.txt
+
