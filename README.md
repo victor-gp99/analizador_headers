@@ -20,7 +20,7 @@ Este script en Python 3 permite analizar de forma automatizada los encabezados d
 
 ```bash
 git clone https://github.com/victor-gp99/analizador_headers.git
-cd analizador-headers
+cd analizador_headers
 pip install -r requirements.txt
 ```
 
